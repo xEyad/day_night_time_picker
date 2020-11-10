@@ -54,7 +54,65 @@ const _ELEVATION = ELEVATION;
 /// **minuteLabel** - The label to be displayed for `minute` picker. Only for _iosStylePicker_. Defaults to `'minutes'`.
 ///
 /// **minuteInterval** - Steps interval while changing `minute`. Accepts `MinuteInterval` enum. Defaults to `MinuteInterval.ONE`.
-PageRouteBuilder showPicker({
+
+void showDayNightPickerDialog(
+  {
+    BuildContext context,
+    @required TimeOfDay value,
+    @required void Function(TimeOfDay) onChange,
+    void Function(DateTime) onChangeDateTime,
+    bool is24HrFormat = false,
+    Color accentColor,
+    Color unselectedColor,
+    String cancelText = "cancel",
+    String okText = "ok",
+    Image sunAsset,
+    Image moonAsset,
+    bool blurredBackground = false,
+    Color barrierColor = Colors.black45,
+    double borderRadius,
+    double elevation,
+    bool barrierDismissible = true,
+    bool iosStylePicker = false,
+    String hourLabel = 'hours',
+    String minuteLabel = 'minutes',
+    MinuteInterval minuteInterval = MinuteInterval.ONE,
+  }
+)
+{
+  showDialog(
+    barrierDismissible : barrierDismissible,
+    barrierColor: barrierColor,
+    context: context,
+    builder: (context){
+      return dayNightPicker(
+        value: value,
+        context:context,
+        onChange:onChange,
+        onChangeDateTime:onChangeDateTime,
+        is24HrFormat:is24HrFormat,
+        accentColor:accentColor,
+        unselectedColor:unselectedColor,
+        cancelText:cancelText,
+        okText:okText,
+        sunAsset : sunAsset,
+        moonAsset : moonAsset,
+        blurredBackground : blurredBackground,
+        barrierColor : barrierColor,
+        borderRadius : borderRadius,
+        elevation : elevation,
+        iosStylePicker : iosStylePicker,
+        hourLabel : hourLabel,
+        minuteLabel : minuteLabel,
+        minuteInterval : minuteInterval,
+      );
+    }
+  );
+}
+
+///get the correct widget and do whatever you want with it.
+///if you need to show it as dialog, use `showDayNightPicker` function
+Widget dayNightPicker({
   BuildContext context,
   @required TimeOfDay value,
   @required void Function(TimeOfDay) onChange,
@@ -70,15 +128,12 @@ PageRouteBuilder showPicker({
   Color barrierColor = Colors.black45,
   double borderRadius,
   double elevation,
-  bool barrierDismissible = true,
   bool iosStylePicker = false,
   String hourLabel = 'hours',
   String minuteLabel = 'minutes',
   MinuteInterval minuteInterval = MinuteInterval.ONE,
 }) {
-  return PageRouteBuilder(
-    pageBuilder: (context, _, __) {
-      if (iosStylePicker) {
+   if (iosStylePicker) {
         return DayNightTimePickerIos(
           value: value,
           onChange: onChange,
@@ -115,26 +170,6 @@ PageRouteBuilder showPicker({
           minuteInterval: minuteInterval,
         );
       }
-    },
-    transitionDuration: Duration(milliseconds: 200),
-    transitionsBuilder: (context, anim, secondAnim, child) => SlideTransition(
-      position: anim.drive(
-        Tween(
-          begin: const Offset(0, 0.15),
-          end: const Offset(0, 0),
-        ).chain(
-          CurveTween(curve: Curves.ease),
-        ),
-      ),
-      child: FadeTransition(
-        opacity: anim,
-        child: child,
-      ),
-    ),
-    barrierDismissible: barrierDismissible,
-    opaque: false,
-    barrierColor: barrierColor,
-  );
 }
 
 /// Private class. [StatefulWidget] that renders the content of the picker.

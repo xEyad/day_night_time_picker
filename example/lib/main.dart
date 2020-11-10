@@ -48,8 +48,7 @@ class _HomeState extends State<Home> {
             FlatButton(
               color: Theme.of(context).accentColor,
               onPressed: () {
-                Navigator.of(context).push(
-                  showPicker(
+                showDayNightPickerDialog(
                     context: context,
                     value: _time,
                     onChange: onTimeChanged,
@@ -58,7 +57,6 @@ class _HomeState extends State<Home> {
                     onChangeDateTime: (DateTime dateTime) {
                       print(dateTime);
                     },
-                  ),
                 );
               },
               child: Text(
