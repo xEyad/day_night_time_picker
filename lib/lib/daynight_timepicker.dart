@@ -55,7 +55,7 @@ const _ELEVATION = ELEVATION;
 ///
 /// **minuteInterval** - Steps interval while changing `minute`. Accepts `MinuteInterval` enum. Defaults to `MinuteInterval.ONE`.
 
-void showDayNightPickerDialog(
+Future<void> showDayNightPickerDialog(
   {
     BuildContext context,
     @required TimeOfDay value,
@@ -78,9 +78,9 @@ void showDayNightPickerDialog(
     String minuteLabel = 'minutes',
     MinuteInterval minuteInterval = MinuteInterval.ONE,
   }
-)
+) async
 {
-  showDialog(
+  return showDialog(
     barrierDismissible : barrierDismissible,
     barrierColor: barrierColor,
     context: context,
