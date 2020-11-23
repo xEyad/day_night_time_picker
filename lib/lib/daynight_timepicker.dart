@@ -66,6 +66,8 @@ Future<void> showDayNightPickerDialog(
     Color unselectedColor,
     String cancelText = "cancel",
     String okText = "ok",
+    String amText = "am",
+    String pmText = "pm",
     Image sunAsset,
     Image moonAsset,
     bool blurredBackground = false,
@@ -122,6 +124,8 @@ Widget dayNightPicker({
   Color unselectedColor,
   String cancelText = "cancel",
   String okText = "ok",
+  String amText = "am",
+  String pmText = "pm",
   Image sunAsset,
   Image moonAsset,
   bool blurredBackground = false,
@@ -143,6 +147,8 @@ Widget dayNightPicker({
           unselectedColor: unselectedColor,
           cancelText: cancelText,
           okText: okText,
+          amText: amText,
+          pmText: pmText,
           sunAsset: sunAsset,
           moonAsset: moonAsset,
           blurredBackground: blurredBackground,
@@ -162,6 +168,8 @@ Widget dayNightPicker({
           unselectedColor: unselectedColor,
           cancelText: cancelText,
           okText: okText,
+          amText: amText,
+          pmText:pmText,
           sunAsset: sunAsset,
           moonAsset: moonAsset,
           blurredBackground: blurredBackground,
@@ -198,6 +206,12 @@ class _DayNightTimePicker extends StatefulWidget {
   /// Text displayed for the Ok button.
   final String okText;
 
+  /// Text displayed for the am button
+  final String amText;
+
+  /// Text displayed for the pm button
+  final String pmText;
+
   /// Image asset used for the Sun.
   final Image sunAsset;
 
@@ -227,6 +241,8 @@ class _DayNightTimePicker extends StatefulWidget {
     this.unselectedColor,
     this.cancelText = "cancel",
     this.okText = "ok",
+    this.amText = 'am',
+    this.pmText = 'pm',
     this.sunAsset,
     this.moonAsset,
     this.blurredBackground = false,
@@ -275,15 +291,15 @@ class _DayNightTimePickerState extends State<_DayNightTimePicker> {
   void separateHoursAndMinutes() {
     int _h = widget.value.hour;
     int _m = widget.value.minute;
-    String _a = "am";
+    String _a = widget.amText;
 
     if (!widget.is24HrFormat) {
       if (_h == 0) {
         _h = 12;
       } else if (_h == 12) {
-        _a = "pm";
+        _a = widget.pmText;
       } else if (_h > 12) {
-        _a = "pm";
+        _a = widget.pmText;
         _h -= 12;
       }
     }
