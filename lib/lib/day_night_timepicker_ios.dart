@@ -152,15 +152,15 @@ class _DayNightTimePickerIosState extends State<DayNightTimePickerIos> {
   Map<String, int> separateHoursAndMinutes() {
     int _h = widget.value.hour;
     int _m = widget.value.minute;
-    String _a = widget.amText;
+    String _a = 'am';
 
     if (!widget.is24HrFormat) {
       if (_h == 0) {
         _h = 12;
       } else if (_h == 12) {
-        _a = widget.pmText;
+        _a = 'pm';
       } else if (_h > 12) {
-        _a = widget.pmText;
+        _a = 'pm';
         _h -= 12;
       }
     }
@@ -275,6 +275,8 @@ class _DayNightTimePickerIosState extends State<DayNightTimePickerIos> {
                   children: <Widget>[
                     if (!widget.is24HrFormat)
                       AmPm(
+                        amText: widget.amText,
+                        pmText: widget.pmText,
                         accentColor: color,
                         unselectedColor: unselectedColor,
                         selected: a,

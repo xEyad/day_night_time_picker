@@ -17,8 +17,13 @@ class AmPm extends StatelessWidget {
   /// Default [TextStyle]
   final _style = TextStyle(fontSize: 20);
 
+  /// am text for view
+  final String amText;
+  /// pm text for view
+  final String pmText;
+
   /// Initialize the buttons
-  AmPm({this.selected, this.onChange, this.accentColor, this.unselectedColor});
+  AmPm({this.selected, this.onChange, this.accentColor, this.unselectedColor,this.amText = "am",this.pmText = "pm"});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +48,7 @@ class AmPm extends StatelessWidget {
                 child: Opacity(
                   opacity: !isAm ? unselectedOpacity : 1,
                   child: Text(
-                    "am",
+                    amText,
                     style: _style.copyWith(
                       color: isAm ? accentColor : unselectedColor,
                       fontWeight: isAm ? FontWeight.bold : null,
@@ -67,7 +72,7 @@ class AmPm extends StatelessWidget {
                 child: Opacity(
                   opacity: isAm ? unselectedOpacity : 1,
                   child: Text(
-                    "pm",
+                    pmText,
                     style: _style.copyWith(
                       color: !isAm ? accentColor : unselectedColor,
                       fontWeight: !isAm ? FontWeight.bold : null,

@@ -97,6 +97,8 @@ Future<void> showDayNightPickerDialog(
         unselectedColor:unselectedColor,
         cancelText:cancelText,
         okText:okText,
+        amText: amText,
+        pmText: pmText,
         sunAsset : sunAsset,
         moonAsset : moonAsset,
         blurredBackground : blurredBackground,
@@ -291,15 +293,15 @@ class _DayNightTimePickerState extends State<_DayNightTimePicker> {
   void separateHoursAndMinutes() {
     int _h = widget.value.hour;
     int _m = widget.value.minute;
-    String _a = widget.amText;
+    String _a = "am";
 
     if (!widget.is24HrFormat) {
       if (_h == 0) {
         _h = 12;
       } else if (_h == 12) {
-        _a = widget.pmText;
+        _a = "pm";
       } else if (_h > 12) {
-        _a = widget.pmText;
+        _a = "pm";
         _h -= 12;
       }
     }
@@ -415,6 +417,8 @@ class _DayNightTimePickerState extends State<_DayNightTimePicker> {
                   children: <Widget>[
                     if (!widget.is24HrFormat)
                       AmPm(
+                        amText: widget.amText,
+                        pmText: widget.pmText,
                         accentColor: color,
                         unselectedColor: unselectedColor,
                         selected: a,
