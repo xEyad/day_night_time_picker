@@ -441,6 +441,7 @@ class _DayNightTimePickerState extends State<_DayNightTimePicker> {
                       ),
                     Expanded(
                       child: Row(
+                        textDirection: TextDirection.ltr,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Material(

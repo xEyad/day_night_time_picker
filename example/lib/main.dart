@@ -35,9 +35,26 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: body() );
+      body: body());
   }
-
+  Widget bodyRTL()
+  {
+    return  Center(child:dayNightPicker(
+                    context: context,
+                    value: _time,
+                    onChange: onTimeChanged,
+                    minuteInterval: MinuteInterval.FIFTEEN,
+                    amText: 'ص',
+                    pmText: 'م',
+                    okText: 'تم',
+                    cancelText: 'الغاء',
+                    textDirection: TextDirection.rtl,
+                    // Optional onChange to receive value as DateTime
+                    onChangeDateTime: (DateTime dateTime) {
+                      print(dateTime);
+                    },
+                ));
+  }
   Widget body()
   {
     return Center(
@@ -58,9 +75,11 @@ class _HomeState extends State<Home> {
                     value: _time,
                     onChange: onTimeChanged,
                     minuteInterval: MinuteInterval.FIFTEEN,
-                    amText: 'am',
-                    pmText: 'pm',
-                    okText: 'Ok',
+                    amText: 'ص',
+                    pmText: 'م',
+                    okText: 'تم',
+                    cancelText: 'الغاء',
+                    textDirection: TextDirection.rtl,
                     // Optional onChange to receive value as DateTime
                     onChangeDateTime: (DateTime dateTime) {
                       print(dateTime);

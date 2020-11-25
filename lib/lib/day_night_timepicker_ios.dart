@@ -292,6 +292,7 @@ class _DayNightTimePickerIosState extends State<DayNightTimePickerIos> {
                       ),
                     Expanded(
                       child: Row(
+                        textDirection: TextDirection.ltr,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           SizedBox(
