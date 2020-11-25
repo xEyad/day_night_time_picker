@@ -35,7 +35,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: body() );
+  }
+
+  Widget body()
+  {
+    return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -53,6 +58,9 @@ class _HomeState extends State<Home> {
                     value: _time,
                     onChange: onTimeChanged,
                     minuteInterval: MinuteInterval.FIFTEEN,
+                    amText: 'am',
+                    pmText: 'pm',
+                    okText: 'Ok',
                     // Optional onChange to receive value as DateTime
                     onChangeDateTime: (DateTime dateTime) {
                       print(dateTime);
@@ -66,7 +74,6 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

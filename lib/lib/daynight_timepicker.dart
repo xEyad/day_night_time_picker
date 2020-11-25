@@ -119,7 +119,7 @@ Future<void> showDayNightPickerDialog(
 }
 
 ///get the correct widget and do whatever you want with it.
-///if you need to show it as dialog, use `showDayNightPicker` function
+///if you need to show it as dialog, use `showDayNightPickerDialog` function
 Widget dayNightPicker({
   BuildContext context,
   @required TimeOfDay value,
