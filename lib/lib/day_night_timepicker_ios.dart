@@ -69,6 +69,8 @@ class DayNightTimePickerIos extends StatefulWidget {
   /// Steps interval while changing [minute].
   final MinuteInterval minuteInterval;
 
+  final TextDirection textDirection;
+
   /// Initialize the picker [Widget]
   DayNightTimePickerIos({
     Key key,
@@ -82,6 +84,7 @@ class DayNightTimePickerIos extends StatefulWidget {
     this.okText = "ok",
     this.amText = "am",
     this.pmText = "pm",
+    this.textDirection = TextDirection.ltr,
     this.sunAsset,
     this.moonAsset,
     this.blurredBackground = false,
@@ -277,6 +280,7 @@ class _DayNightTimePickerIosState extends State<DayNightTimePickerIos> {
                       AmPm(
                         amText: widget.amText,
                         pmText: widget.pmText,
+                        textDirection: widget.textDirection,
                         accentColor: color,
                         unselectedColor: unselectedColor,
                         selected: a,
@@ -370,6 +374,7 @@ class _DayNightTimePickerIosState extends State<DayNightTimePickerIos> {
                     ),
                     Expanded(
                       child: Row(
+                        textDirection:widget.textDirection,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           FlatButton(

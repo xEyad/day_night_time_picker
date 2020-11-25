@@ -54,6 +54,8 @@ const _ELEVATION = ELEVATION;
 /// **minuteLabel** - The label to be displayed for `minute` picker. Only for _iosStylePicker_. Defaults to `'minutes'`.
 ///
 /// **minuteInterval** - Steps interval while changing `minute`. Accepts `MinuteInterval` enum. Defaults to `MinuteInterval.ONE`.
+/// 
+/// **textDirectionality** set this to `TextDirection.rtl` if you want to override default
 
 Future<void> showDayNightPickerDialog(
   {
@@ -68,6 +70,7 @@ Future<void> showDayNightPickerDialog(
     String okText = "ok",
     String amText = "am",
     String pmText = "pm",
+    TextDirection textDirection = TextDirection.ltr,
     Image sunAsset,
     Image moonAsset,
     bool blurredBackground = false,
@@ -99,6 +102,7 @@ Future<void> showDayNightPickerDialog(
         okText:okText,
         amText: amText,
         pmText: pmText,
+        textDirection:textDirection,
         sunAsset : sunAsset,
         moonAsset : moonAsset,
         blurredBackground : blurredBackground,
@@ -128,6 +132,7 @@ Widget dayNightPicker({
   String okText = "ok",
   String amText = "am",
   String pmText = "pm",
+  TextDirection textDirection = TextDirection.ltr,
   Image sunAsset,
   Image moonAsset,
   bool blurredBackground = false,
@@ -151,6 +156,7 @@ Widget dayNightPicker({
           okText: okText,
           amText: amText,
           pmText: pmText,
+          textDirection:textDirection,
           sunAsset: sunAsset,
           moonAsset: moonAsset,
           blurredBackground: blurredBackground,
@@ -172,6 +178,7 @@ Widget dayNightPicker({
           okText: okText,
           amText: amText,
           pmText:pmText,
+          textDirection:textDirection,
           sunAsset: sunAsset,
           moonAsset: moonAsset,
           blurredBackground: blurredBackground,
@@ -232,6 +239,8 @@ class _DayNightTimePicker extends StatefulWidget {
   /// Steps interval while changing [minute].
   final MinuteInterval minuteInterval;
 
+  final TextDirection textDirection;
+
   /// Initialize the picker [Widget]
   _DayNightTimePicker({
     Key key,
@@ -245,6 +254,7 @@ class _DayNightTimePicker extends StatefulWidget {
     this.okText = "ok",
     this.amText = 'am',
     this.pmText = 'pm',
+    this.textDirection = TextDirection.ltr,
     this.sunAsset,
     this.moonAsset,
     this.blurredBackground = false,
@@ -419,6 +429,7 @@ class _DayNightTimePickerState extends State<_DayNightTimePicker> {
                       AmPm(
                         amText: widget.amText,
                         pmText: widget.pmText,
+                        textDirection: widget.textDirection,
                         accentColor: color,
                         unselectedColor: unselectedColor,
                         selected: a,
@@ -494,6 +505,7 @@ class _DayNightTimePickerState extends State<_DayNightTimePicker> {
                     ),
                     Expanded(
                       child: Row(
+                        textDirection: widget.textDirection,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           FlatButton(

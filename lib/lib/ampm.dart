@@ -22,8 +22,9 @@ class AmPm extends StatelessWidget {
   /// pm text for view
   final String pmText;
 
+  final TextDirection textDirection;
   /// Initialize the buttons
-  AmPm({this.selected, this.onChange, this.accentColor, this.unselectedColor,this.amText = "am",this.pmText = "pm"});
+  AmPm({this.selected, this.onChange, this.accentColor, this.unselectedColor,this.amText = "am",this.pmText = "pm",this.textDirection = TextDirection.ltr});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class AmPm extends StatelessWidget {
 
     return Container(
       child: Row(
+        textDirection: textDirection,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Material(
